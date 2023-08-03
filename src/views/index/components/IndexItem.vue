@@ -1,66 +1,66 @@
 <script setup lang="ts">
 const itemList = [
     {
-        msgImgUrl: 'src/assets/footerImg/wechat.png',
+        msgImgUrl: 'src/assets/img/footerImg/wechat.png',
         msgTitle: '梅州梅州',
         msgTip: '15产品设计吴江铭:[动画表情]',
         time: '09:56',
         isMute: true
     },
     {
-        msgImgUrl: 'src/assets/footerImg/wechat.png',
+        msgImgUrl: 'src/assets/img/footerImg/wechat.png',
         msgTitle: '梅州梅州',
         msgTip: '15产品设计吴江铭:[动画表情]',
         time: '09:56',
         isMute: true
     },
     {
-        msgImgUrl: 'src/assets/footerImg/wechat.png',
+        msgImgUrl: 'src/assets/img/footerImg/wechat.png',
         msgTitle: '梅州梅州',
         msgTip: '15产品设计吴江铭:[动画表情]',
         time: '09:56',
         isMute: true
     },
     {
-        msgImgUrl: 'src/assets/footerImg/wechat.png',
+        msgImgUrl: 'src/assets/img/footerImg/wechat.png',
         msgTitle: '梅州梅州',
         msgTip: '15产品设计吴江铭:[动画表情]',
         time: '09:56',
         isMute: true
     },
     {
-        msgImgUrl: 'src/assets/footerImg/wechat.png',
+        msgImgUrl: 'src/assets/img/footerImg/wechat.png',
         msgTitle: '梅州梅州',
         msgTip: '15产品设计吴江铭:[动画表情]',
         time: '09:56',
         isMute: true
     },
     {
-        msgImgUrl: 'src/assets/footerImg/wechat.png',
+        msgImgUrl: 'src/assets/img/footerImg/wechat.png',
         msgTitle: '梅州梅州',
         msgTip: '15产品设计吴江铭:[动画表情]',
         time: '09:56',
         isMute: true
     }, {
-        msgImgUrl: 'src/assets/footerImg/wechat.png',
+        msgImgUrl: 'src/assets/img/footerImg/wechat.png',
         msgTitle: '梅州梅州',
         msgTip: '15产品设计吴江铭:[动画表情]',
         time: '09:56',
         isMute: true
     }, {
-        msgImgUrl: 'src/assets/footerImg/wechat.png',
+        msgImgUrl: 'src/assets/img/footerImg/wechat.png',
         msgTitle: '梅州梅州',
         msgTip: '15产品设计吴江铭:[动画表情]',
         time: '09:56',
         isMute: true
     }, {
-        msgImgUrl: 'src/assets/footerImg/wechat.png',
+        msgImgUrl: 'src/assets/img/footerImg/wechat.png',
         msgTitle: '梅州梅州',
         msgTip: '15产品设计吴江铭:[动画表情]',
         time: '09:56',
         isMute: true
     }, {
-        msgImgUrl: 'src/assets/footerImg/wechat.png',
+        msgImgUrl: 'src/assets/img/footerImg/wechat.png',
         msgTitle: '梅州梅州',
         msgTip: '15产品设计吴江铭:[动画表情]',
         time: '09:56',

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useOtherStore } from '@/store/modules/other'
+import { ref } from 'vue'
 const otherStore = useOtherStore()
 const name = 'robot'
 const address = '广东 汕头'
@@ -15,7 +16,7 @@ const clickErweima = (e: any) => {
         <div class="inner-wrap" data-index="erweima">
             <div class="personMsg" data-index="erweima">
                 <div class="img-wrap">
-                    <img src="@/assets/footerImg/wechat.png" alt="">
+                    <img src="@/assets/img/footerImg/wechat.png" alt="">
                 </div>
                 <div class="wrap">
                     <div class="name">

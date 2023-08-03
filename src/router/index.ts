@@ -52,8 +52,8 @@ const constantRoutes: RouteRecordRaw[] = [
         },
     },
     {
-        path: "/hhh",
-        component: () => import("@/views/hhh/index.vue"),
+        path: "/chat",
+        component: () => import("@/views/chat/chatFriend.vue"),
         meta: {
             hidden: true,
         },

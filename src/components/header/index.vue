@@ -14,7 +14,7 @@ const barStore = useBarStore()
     <div class="header-wrap">
         <div class="title">{{ barStore.title }}</div>
         <div class="back"></div>
-        <section class="goback" v-if="barStore.headGoBack" @click="router.go(-1)">
+        <section class="goback" v-if="barStore.headGoBack">
             <leftArrow @click="router.go(-1)"></leftArrow>
         </section>
         <div class="search" v-if="barStore.headerSearch">

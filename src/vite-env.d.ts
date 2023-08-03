@@ -15,3 +15,8 @@ declare module "*.ts" {
     const component: DefineComponent<{}, {}, any>
     export default ts
 }
+
+declare module "*.js" {
+    const component: DefineComponent<{}, {}, any>
+    export default ts
+}

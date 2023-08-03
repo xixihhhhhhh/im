@@ -1,21 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useRouter, useRoute } from "vue-router"
 
 const router = useRouter()
 const route = useRoute()
-const activeIndex = ref<number>(route.meta.index as number || 1)
-
-const routerChange = (index: number, url: string) => {
-    activeIndex.value = index
-    router.push(url)
-}
 </script>
 
 <template>
     <div class="footer-wrap">
-        <div class="item-wrap" @click="routerChange(1, '/index')">
-            <div class="img-wrap" :class="{ active: activeIndex === 1 }">
+        <div class="item-wrap" @click="router.push('/index')">
+            <div class="img-wrap" :class="{ active: route.meta.index === 1 }">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1690342965008"
                     class="icon" viewBox="0 0 1024 1024" version="1.1" p-id="2872">
                     <path
@@ -25,8 +18,8 @@ const routerChange = (index: number, url: string) => {
             </div>
             <div class="img-text">微信 </div>
         </div>
-        <div class="item-wrap" @click="routerChange(2, '/contacts')">
-            <div class="img-wrap" :class="{ active: activeIndex === 2 }">
+        <div class="item-wrap" @click="router.push('/contacts')">
+            <div class="img-wrap" :class="{ active: route.meta.index === 2 }">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1690355737096"
                     class="icon" viewBox="0 0 1024 1024" version="1.1" p-id="4421">
                     <path
@@ -42,8 +35,8 @@ const routerChange = (index: number, url: string) => {
             </div>
             <div class="img-text">通讯录 </div>
         </div>
-        <div class="item-wrap" @click="routerChange(3, '/find')">
-            <div class="img-wrap" :class="{ active: activeIndex === 3 }">
+        <div class="item-wrap" @click="router.push('/find')">
+            <div class="img-wrap" :class="{ active: route.meta.index === 3 }">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1690356157899"
                     class="icon" viewBox="0 0 1024 1024" version="1.1" p-id="6331">
                     <path
@@ -53,8 +46,8 @@ const routerChange = (index: number, url: string) => {
             </div>
             <div class="img-text">发现 </div>
         </div>
-        <div class="item-wrap" @click="routerChange(4, '/me')">
-            <div class="img-wrap" :class="{ active: activeIndex === 4 }">
+        <div class="item-wrap" @click="router.push('/me')">
+            <div class="img-wrap" :class="{ active: route.meta.index === 4 }">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1690356247076"
                     class="icon" viewBox="0 0 1024 1024" version="1.1" p-id="7383">
                     <path

@@ -3,21 +3,31 @@ import myInput from '@/base/myInput.vue'
 import funcItemList from './componnets/funcItemList.vue'
 import erweima from './componnets/erweima.vue'
 import { initPage } from '@/utils'
-import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useOtherStore } from '@/store/modules/other'
 initPage('添加朋友', false, false, true, true)
+const router = useRouter() 
 const otherStore = useOtherStore()
-const content = ref<string>('')
-const getContent = (e: string) => {
-    content.value = e
-}
 const wechatNumber = 'kaerweinuomilan'
+const click = () => {
+    router.push('/searchFriend')
+}
 </script>
 
 <template>
     <div class="addFriend-wrap">
         <div class="search-wrap">
-            <myInput @pass-content="getContent"></myInput>
+            <!-- <myInput @pass-content="getContent"></myInput> -->
+            <!-- 可以使用 CellGroup 作为容器 -->
+            <input class="input" placeholder="账号 / 手机号" @click="click" >
+            <div class="preix-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1690454548697"
+                    class="icon" viewBox="0 0 1024 1024" version="1.1" p-id="17544" width="16" height="16">
+                    <path
+                        d="M953.504 908.256l-152.608-163.296c61.856-74.496 95.872-167.36 95.872-265.12 0-229.344-186.624-415.968-416.032-415.968-229.344 0-415.968 186.592-415.968 415.968s186.624 415.968 416 415.968c60.096-0.032 118.048-12.576 172.224-37.248 16.096-7.328 23.2-26.304 15.872-42.368-7.328-16.128-26.4-23.264-42.368-15.872-45.856 20.864-94.88 31.456-145.76 31.488-194.08 0-351.968-157.888-351.968-351.968 0-194.048 157.888-351.968 351.968-351.968 194.112 0 352.032 157.888 352.032 351.968 0 91.36-34.848 177.92-98.08 243.744-12.256 12.736-11.84 32.992 0.864 45.248 0.96 0.928 2.208 1.28 3.296 2.08 0.864 1.28 1.312 2.752 2.4 3.904l165.504 177.088c6.272 6.752 14.816 10.144 23.36 10.144 7.84 0 15.68-2.848 21.856-8.64C964.864 941.408 965.568 921.152 953.504 908.256z"
+                        p-id="17545" fill="#999" />
+                </svg>
+            </div>
         </div>
         <div class="wechatNumber">
             我的微信号： {{ wechatNumber }}&nbsp
@@ -59,6 +69,42 @@ const wechatNumber = 'kaerweinuomilan'
 .addFriend-wrap {
     height: 100%;
     background: rgb(237, 237, 237);
+    padding: 3rem 0 4.0625rem 0;
+
+    .search-wrap {
+        display: flex;
+        justify-content: center;
+
+        .input {
+            height: 1.2rem;
+            width: 80%;
+            margin: 0 auto .625rem;
+            padding: 0 0 0 10px;
+            @include borderRadius(.4rem);
+            box-shadow: 0 0 .1rem #fff;
+            background: #fff;
+            border: none;
+            outline: none;
+        }
+
+        .input::-webkit-input-placeholder {
+            text-align: center;
+            color: #999;
+        }
+
+        .input::-ms-input-placeholder {
+            text-align: center;
+        }
+
+        .preix-icon {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            left: 33%;
+            top: 8%;
+            pointer-events: none;
+        }
+    }
 
     .wechatNumber {
         margin: 0px auto 10px;

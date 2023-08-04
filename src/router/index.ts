@@ -65,6 +65,20 @@ const constantRoutes: RouteRecordRaw[] = [
             hidden: true,
         },
     },
+    {
+        path: "/searchFriend",
+        component: () => import("@/views/searchFriend/index.vue"),
+        meta: {
+            hidden: true,
+        },
+    },
+    {
+        path: "/personalCard",
+        component: () => import("@/views/personalCard/index.vue"),
+        meta: {
+            hidden: true,
+        },
+    },
 ];
 
 const router = createRouter({

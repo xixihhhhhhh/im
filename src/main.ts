@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import 'vant/es/toast/style'
 
 import store from "@/store/index.ts"
 import router from './router'

@@ -21,7 +21,6 @@ const store = useBarStore()
   height: 100%;
   overflow-y: auto;
   background: rgba(255, 255, 255, 255);
-  padding: 40px 0 65px 0;
 }
 
 .main-container::-webkit-scrollbar {

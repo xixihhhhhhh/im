@@ -2,7 +2,8 @@
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { initPage } from '@/utils'
-import { enroll } from '@/api'
+import { enroll, login } from '@/api'
+import { showToast } from 'vant';
 
 const router = useRouter()
 initPage('发现', true, true, false, false)
@@ -17,13 +18,17 @@ const onChangeTab = (index: number) => {
 
 const activeIndex = ref<number>(0)
 const loginForm = reactive({
-    name: '',
-    password: ''
+    name: 'kk',
+    password: '123'
 })
-const onSubmitLogin = (valid: Form) => {
-    console.log(valid);
-
-    router.push('/index')
+const onSubmitLogin = async (valid: Form) => {
+    const res = await login(loginForm.name, loginForm.password)
+    if (res.code === 200) {
+        router.push('/index')
+        console.log(res);
+    } else {
+        showToast('登录失败！')
+    }
 }
 const registerForm = reactive({
     name: '',
@@ -31,8 +36,11 @@ const registerForm = reactive({
 })
 const onSubmitRegister = async () => {
     const res = await enroll(registerForm.name, registerForm.password)
-    console.log(res)
-
+    if (res.code === 200) {
+        router.push('/index')
+    } else {
+        showToast('注册失败！')
+    }
 }
 
 const checked = ref<boolean>(false)
@@ -57,7 +65,7 @@ const checked = ref<boolean>(false)
                     :rules="[{ required: true, message: '请填写密码' }]" />
             </van-cell-group>
             <div class="xieyi" @click="checked = !checked">
-                <van-checkbox v-model="checked" class="agree"></van-checkbox>
+                <van-checkbox v-model="checked" class="agree" @click="checked = !checked"></van-checkbox>
                 <div class="text">
                     请勾选阅读并同意<span class="blue">《用户服务协议》</span>和
                     <span class="blue">《隐私政策》</span>
@@ -77,6 +85,13 @@ const checked = ref<boolean>(false)
                 <van-field v-model="registerForm.password" type="password" name="密码" label="密码" placeholder="请输入密码"
                     :rules="[{ required: true, message: '请填写密码' }]" />
             </van-cell-group>
+            <div class="xieyi" @click="checked = !checked">
+                <van-checkbox v-model="checked" class="agree" @click="checked = !checked"></van-checkbox>
+                <div class="text">
+                    请勾选阅读并同意<span class="blue">《用户服务协议》</span>和
+                    <span class="blue">《隐私政策》</span>
+                </div>
+            </div>
             <div style="margin: 36px; ">
                 <van-button round block type="primary" native-type="submit">
                     注册
@@ -125,6 +140,7 @@ const checked = ref<boolean>(false)
 
 .login-con {
     height: 100%;
+    padding: 3rem 0 4.0625rem 0;
     background: linear-gradient(transparent, #f39);
 
     .img-wrap {

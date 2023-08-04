@@ -10,6 +10,7 @@ export default defineConfig({
   Components({
     resolvers: [VantResolver()],
   }),],
+  
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

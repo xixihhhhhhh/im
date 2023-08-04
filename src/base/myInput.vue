@@ -8,7 +8,7 @@ const throttleInput = debounce(() => {
         flag.value = true
         emits('passContent', content.value)
     }
-}, 500)
+}, 100)
 const inputChinese = () => {
     flag.value = true
 }

@@ -2,7 +2,7 @@ import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios"
 import { showToast } from 'vant';
 
 
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'http://localhost:3001/api/v1'
 // 不带全局loading的请求实例
 export const requestWithoutLoading: AxiosInstance = createBaseInstance()
 // 带全局loading的请求实例
@@ -13,7 +13,7 @@ mixinLoading(request.interceptors)
 // 通用的axios实例
 function createBaseInstance() {
     const instance = axios.create({
-        baseURL: BASE_URL,
+        baseURL: import.meta.env.VITE_BASE_API,
     })
 
     instance.interceptors.response.use(handleResponse, handleError)

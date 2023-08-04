@@ -3,6 +3,14 @@ const emits = defineEmits(['click'])
 const onClick = (e: any) => {
     emits('click', e)
 }
+const props = defineProps({
+    width: {
+        type: Number,
+        default: () => {
+
+        }
+    }
+})
 </script>
 
 <template>

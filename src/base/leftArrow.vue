@@ -6,35 +6,47 @@ const onClick = (e: any) => {
 const props = defineProps({
     width: {
         type: Number,
-        default: () => {
-
-        }
+        default: 2
+    },
+    height: {
+        type: Number,
+        default: 10
+    },
+    color: {
+        type: String,
+        default: '#000'
     }
 })
+const style = {
+    '--width': props.width + 'px',
+    '--height': props.height + 'px',
+    '--background': props.color,
+    '--topAndLeft': props.height / 2 + 'px'
+}
 </script>
 
 <template>
-    <div class="leftArrow" @click="onClick">
+    <div class="leftArrow" @click="onClick" :style="style">
     </div>
 </template>
 
 <style lang="scss" scoped>
 .leftArrow {
     position: relative;
-    width: 2px;
-    height: 10px;
-    background: #000;
+    width: var(--width);
+    height: var(--height);
+    background: var(--background);
     rotate: 45deg;
 }
 
 .leftArrow::before {
     content: '';
     position: absolute;
-    left: 5px;
-    top: 5px;
-    width: 2px;
-    height: 10px;
-    background: #000;
+    left: var(--topAndLeft);
+    top: var(--topAndLeft);
+    width: var(--width);
+    height: var(--height);
+    background: var(--background);
     rotate: 90deg;
 }
 </style>

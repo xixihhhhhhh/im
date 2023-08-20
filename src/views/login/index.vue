@@ -4,7 +4,9 @@ import { useRouter } from 'vue-router'
 import { initPage } from '@/utils'
 import { enroll, login } from '@/api'
 import { showToast } from 'vant';
+import { useUserStore } from '@/store/modules/user';
 
+const userStrore = useUserStore()
 const router = useRouter()
 initPage('发现', true, true, false, false)
 const Tabs = ['登录', '注册']
@@ -24,6 +26,7 @@ const loginForm = reactive({
 const onSubmitLogin = async (valid: Form) => {
     const res = await login(loginForm.name, loginForm.password)
     if (res.code === 200) {
+        userStrore.setCurrentUser(res.data)
         router.push('/index')
         console.log(res);
     } else {

@@ -22,7 +22,10 @@ export const useAppStore = defineStore("app", () => {
     }
 
     return { moreBox, openMoreBox, closeMoreBox, toggleMoreBox }
-})
+},
+    {
+        persist: true,
+    })
 
 export function useAppStoreHook() {
     return useAppStore(store)

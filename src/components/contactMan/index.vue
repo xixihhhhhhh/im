@@ -20,7 +20,7 @@ const gotoFriend = () => {
             <img src="@/assets/img/mihoyo.jpg" alt="">
         </div>
         <div class="right">
-            {{ name }}
+            {{ props.name }}
         </div>
     </div>
 </template>
@@ -45,7 +45,7 @@ const gotoFriend = () => {
     .right::after {
         content: '';
         position: absolute;
-        width: 100%;
+        width: 90%;
         height: 1px;
         background: #ddd;
         bottom: 0;

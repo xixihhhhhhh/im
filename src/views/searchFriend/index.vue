@@ -2,7 +2,11 @@
 import { initPage, debounce } from '@/utils'
 import { useRouter } from 'vue-router'
 import { ref, watch } from 'vue'
+import { findUserByName } from '@/api'
+import { showToast } from 'vant';
+import { useUserStore } from '@/store/modules/user';
 
+const userStrore = useUserStore()
 const router = useRouter()
 initPage('我', false, false, false, false)
 const clickErweima = (e: any) => {
@@ -30,6 +34,18 @@ const inputChinese = () => {
     showIcon.value = false
 }
 const showCard = ref<boolean>(false)
+const searchFriend = async () => {
+    const res = await findUserByName(content.value)
+    console.log(res)
+    if (res.code === 200) {
+        console.log(res.data)
+        userStrore.setSearchUser(res.data)
+        router.push('/personalCard')
+    } else {
+        showToast(res.msg)
+        content.value = ''
+    }
+}
 </script>
 
 <template>
@@ -60,7 +76,7 @@ const showCard = ref<boolean>(false)
             </div>
             <div class="cancel">取消</div>
         </div>
-        <div class="second-col" @click="router.push('/personalCard')" v-show="showCard">
+        <div class="second-col" @click="searchFriend()" v-show="showCard">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1691135382495"
                 class="icon" viewBox="0 0 1024 1024" version="1.1" p-id="3596">
                 <path

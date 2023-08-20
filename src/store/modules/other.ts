@@ -13,7 +13,10 @@ export const useOtherStore = defineStore("other", () => {
         showErweima.value = true
     }
     return { showErweima, closeErweima, openErweima }
-})
+},
+    {
+        persist: true,
+    })
 
 
 export function useOtherStoreHook() {

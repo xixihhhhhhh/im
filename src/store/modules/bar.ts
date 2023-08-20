@@ -29,7 +29,10 @@ export const useBarStore = defineStore("bar", () => {
         headGoBack.value = falg
     }
     return { showHeader, setHeader, title, headerSearch, setSearch, headerAddMore, setAddMore, headGoBack, setheadGoBack }
-})
+},
+    {
+        persist: true,
+    })
 
 export function useBarStoreHook() {
     return useBarStore(store)

@@ -2,7 +2,7 @@ import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios"
 import { showToast } from 'vant';
 
 
-const BASE_URL = 'http://localhost:3001/api/v1'
+const BASE_URL = 'http://localhost:3001'
 // 不带全局loading的请求实例
 export const requestWithoutLoading: AxiosInstance = createBaseInstance()
 // 带全局loading的请求实例

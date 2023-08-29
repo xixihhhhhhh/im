@@ -38,3 +38,10 @@ export const addTxl = (user_id: nors, friend_id: nors, frined_name: string, user
 export const findMyFriends = (user_id: nors) => request({
     url: '/friend/myFriend', method: 'post', data: { user_id }
 })
+
+/**
+ * 查找好友聊天消息记录
+ */
+export const findFriendChatMsgList = (user_id: nors, toUser_id: nors) => request({
+    url: '/chat/getMsgList', method: 'post', data: { user_id, toUser_id }
+})

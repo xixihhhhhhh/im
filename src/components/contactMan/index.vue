@@ -5,11 +5,16 @@ const props = defineProps({
     name: {
         type: String,
         defaule: '新的朋友'
+    },
+    id: {
+        type: Number
     }
 })
-const name = '新的朋友'
-
+import { useMeetingStore } from '@/store/modules/meeting'
+const meetingStore = useMeetingStore()
 const gotoFriend = () => {
+    meetingStore.name = props.name as string
+    meetingStore.friendId = props.id as number
     router.push('/chat')
 }
 </script>

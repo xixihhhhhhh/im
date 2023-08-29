@@ -103,23 +103,22 @@ const itemList = [
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px 0;
+    padding: .625rem 0;
 
     .left-wrap {
-        @include img-wrap(40px);
+        @include img-wrap(2.5rem);
     }
 
     .middle-wrap {
         position: relative;
-        right: 40px;
 
         .title {
             font-weight: bold;
-            font-size: 16px;
+            font-size: .8rem;
         }
 
         .tip {
-            font-size: 12px;
+            font-size: .75rem;
             color: #666;
         }
     }
@@ -132,7 +131,7 @@ const itemList = [
 
         .mute {
             position: relative;
-            left: 20px;
+            left: 0.25rem;
         }
     }
 }

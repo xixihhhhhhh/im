@@ -1,23 +1,37 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch, onMounted, nextTick } from 'vue'
 import emojiList from '@/assets/icomNames.js';
-const sendMessage = (e: any) => {
-    console.log(e, 'eeeeeeeeee');
+import { useMeetingStore } from '@/store/modules/meeting'
+const meetingStore = useMeetingStore()
+defineProps(['content',])
+const emits = defineEmits(['sendMessage'])
+const message = ref<string>('')
+const sendMessage = () => {
+    const inputPannel = document.getElementsByClassName('input-panel') as any
+    message.value += inputPannel[0].innerText
+    meetingStore.inputActive = false
+    emits('sendMessage', message.value)
+    inputPannel[0].innerText = ''
+    message.value = ''
 }
-const inputActive = ref<boolean>(false)
-const showEmoji = ref<boolean>(true)
+const arr: { cn: any; index: any; }[] = []
+let index: number = 0
 const pushImg = (emoji: any) => {
+    const inputPannel = document.getElementsByClassName('input-panel') as any
+    // message.value += inputPannel[0].innerText
     const imgTag = `<img src="${emoji.url}" width="16" height="16" >`;
     document.execCommand("insertHTML", false, imgTag);
-}
-const input = () => {
-    console.log('ssss');
-
+    arr.push({
+        cn: emoji.CN,
+        index: inputPannel[0].innerText.length + index
+    })
+    index++
+    message.value += `[${emoji.CN}]`
 }
 </script>
 
 <template>
-    <footer class="footer-wrap" :class="{ active: inputActive }">
+    <footer class="footer-wrap" :class="{ active: meetingStore.inputActive }">
         <div class="inner-wrap">
             <div class="volumne">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1691043348371"
@@ -27,9 +41,9 @@ const input = () => {
                         fill="#000000" p-id="3162" />
                 </svg>
             </div>
-            <div class="input-panel" ref="msgInputContainer" @keydown.enter.exact="sendMessage($event)"
-                contenteditable="true" spellcheck="false" @click="inputActive = true"></div>
-            <div class="emoij" @click="inputActive = !inputActive">
+            <div class="input-panel" @keydown.enter.exact="sendMessage()" contenteditable="true" spellcheck="false"
+                @click="meetingStore.changeinputActive(true)"></div>
+            <div class="emoij" @click="meetingStore.changeinputActive(!meetingStore.inputActive)">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1691046246367"
                     class="icon" viewBox="0 0 1024 1024" version="1.1" p-id="4456" width="22" height="22">
                     <path
@@ -40,7 +54,7 @@ const input = () => {
                         fill="#000" p-id="4458" />
                 </svg>
             </div>
-            <div class="more" v-show="!inputActive">
+            <div class="more" v-show="!meetingStore.inputActive">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1690360669247"
                     class="icon" viewBox="0 0 1024 1024" version="1.1" p-id="9394" width="20" height="20">
                     <path
@@ -48,9 +62,9 @@ const input = () => {
                         fill="#000" p-id="9395" />
                 </svg>
             </div>
-            <van-button type="success" size="small" v-show="inputActive">发送</van-button>
+            <van-button type="success" size="small" v-show="meetingStore.inputActive" @click="sendMessage">发送</van-button>
         </div>
-        <div class="emoji-container" :class="{ active: inputActive }" @click.stop>
+        <div class="emoji-container" :class="{ active: meetingStore.inputActive }" @click.stop>
             <img class="emoji" v-for="(emoji, i) in emojiList" :key="i" :src="emoji.url" @click.stop="pushImg(emoji)" />
         </div>
     </footer>
@@ -89,7 +103,7 @@ const input = () => {
     }
 
     &.active {
-        height: 200px;
+        height: 10rem;
     }
 
     .emoji-container {

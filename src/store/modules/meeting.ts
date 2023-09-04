@@ -24,7 +24,9 @@ export const useMeetingStore = defineStore("meeting", () => {
         inputActive.value = flag
     }
 
-    return { name, messageArr, push, friendId, inputActive, changeinputActive }
+    const voiceActive = ref<boolean>(false)
+
+    return { name, messageArr, push, friendId, inputActive, changeinputActive, voiceActive }
 },
     {
         persist: true,

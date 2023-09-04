@@ -4,36 +4,64 @@ import emojiList from '@/assets/icomNames.js';
 import { useMeetingStore } from '@/store/modules/meeting'
 const meetingStore = useMeetingStore()
 defineProps(['content',])
-const emits = defineEmits(['sendMessage'])
+const emits = defineEmits(['sendMessage', 'voice'])
 const message = ref<string>('')
 const sendMessage = () => {
     const inputPannel = document.getElementsByClassName('input-panel') as any
-    message.value += inputPannel[0].innerText
     meetingStore.inputActive = false
+    message.value = manageMsg(inputPannel[0].innerText)
+    arr = []
     emits('sendMessage', message.value)
     inputPannel[0].innerText = ''
     message.value = ''
 }
-const arr: { cn: any; index: any; }[] = []
-let index: number = 0
+let arr: string[] = []
 const pushImg = (emoji: any) => {
-    const inputPannel = document.getElementsByClassName('input-panel') as any
-    // message.value += inputPannel[0].innerText
     const imgTag = `<img src="${emoji.url}" width="16" height="16" >`;
     document.execCommand("insertHTML", false, imgTag);
-    arr.push({
-        cn: emoji.CN,
-        index: inputPannel[0].innerText.length + index
-    })
-    index++
-    message.value += `[${emoji.CN}]`
+    const inputPannel = document.getElementsByClassName('input-panel') as any
+    const index = inputPannel[0].innerText.length
+    if (arr[index]) {
+        arr[index] += `[${emoji.CN}]`
+    } else {
+        arr[index] = `[${emoji.CN}]`
+    }
 }
+
+const keydown = (e: { key: string; }) => {
+    if (e.key === 'Backspace') {
+        const inputPannel = document.getElementsByClassName('input-panel') as any
+        const index = inputPannel[0].innerText.length
+        arr[index] = ''
+    }
+}
+function insertStr(source: string, start: number, newStr: string) {
+    return source.slice(0, start) + newStr + source.slice(start)
+}
+function manageMsg(msg: string) {
+    let count = 0
+    arr.forEach((item, index) => {
+        if (item.length > 0) {
+            msg = insertStr(msg, index + 4 * count, item)
+            count++
+        }
+    })
+    // console.log(msg)
+    return msg
+}
+
+const voiceActive = ref(false)
+function voice() {
+    emits('voice')
+    meetingStore.voiceActive = !meetingStore.voiceActive
+}
+import voiceCom from './voice.vue'
 </script>
 
 <template>
-    <footer class="footer-wrap" :class="{ active: meetingStore.inputActive }">
-        <div class="inner-wrap">
-            <div class="volumne">
+    <footer class="footer-wrap" :class="{ active: meetingStore.inputActive, voiceActive: meetingStore.voiceActive }">
+        <div class="inner-wrap" v-if="!meetingStore.voiceActive">
+            <div class="volumne" @click="voice">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1691043348371"
                     class="icon" viewBox="0 0 1025 1024" version="1.1" p-id="3161" width="22" height="20">
                     <path
@@ -42,7 +70,7 @@ const pushImg = (emoji: any) => {
                 </svg>
             </div>
             <div class="input-panel" @keydown.enter.exact="sendMessage()" contenteditable="true" spellcheck="false"
-                @click="meetingStore.changeinputActive(true)"></div>
+                @click="meetingStore.changeinputActive(true)" @keydown="keydown"></div>
             <div class="emoij" @click="meetingStore.changeinputActive(!meetingStore.inputActive)">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1691046246367"
                     class="icon" viewBox="0 0 1024 1024" version="1.1" p-id="4456" width="22" height="22">
@@ -64,6 +92,7 @@ const pushImg = (emoji: any) => {
             </div>
             <van-button type="success" size="small" v-show="meetingStore.inputActive" @click="sendMessage">发送</van-button>
         </div>
+        <voiceCom v-if="meetingStore.voiceActive" class="voice"></voiceCom>
         <div class="emoji-container" :class="{ active: meetingStore.inputActive }" @click.stop>
             <img class="emoji" v-for="(emoji, i) in emojiList" :key="i" :src="emoji.url" @click.stop="pushImg(emoji)" />
         </div>
@@ -106,6 +135,10 @@ const pushImg = (emoji: any) => {
         height: 10rem;
     }
 
+    &.voiceActive {
+        height: 6rem;
+    }
+
     .emoji-container {
         position: absolute;
         box-sizing: border-box;
@@ -132,6 +165,11 @@ const pushImg = (emoji: any) => {
         &.active {
             opacity: 1;
         }
+    }
+
+    .voice {
+        position: relative;
+        top: 2rem;
     }
 }
 </style>

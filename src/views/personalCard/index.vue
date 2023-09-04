@@ -19,6 +19,20 @@ const AddTxl = async () => {
     const res = await addTxl(currentUser.id, searchUser.id, searchUser.name, currentUser.name)
     showToast(res.msg)
 }
+import { findMyFriends } from '@/api'
+const userStrore = useUserStore()
+const showAddTxl = ref(true)
+onMounted(async () => {
+    const res = await findMyFriends(userStrore.currentUser.id)
+    res.data.forEach((element: any) => {
+        if (element.friend_id === searchUser.id) {
+            showAddTxl.value = false
+        }
+    });
+    showAddTxl.value = currentUser.id === searchUser.id ? false : showAddTxl.value
+})
+
+    // return currentUser.id !== searchUser.id
 </script>
 
 <template>
@@ -54,7 +68,7 @@ const AddTxl = async () => {
             <div class="left">来源</div>
             <div class="source">来自手机号搜素</div>
         </div>
-        <div class="sixth-row" @click="AddTxl" v-if="currentUser.id !== searchUser.id">
+        <div class="sixth-row" @click="AddTxl" v-if="showAddTxl">
             <text class="tx">添加到通讯录</text>
         </div>
     </div>

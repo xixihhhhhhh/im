@@ -21,8 +21,8 @@ const style = {
     '--width': props.width + 'px',
     '--height': props.height + 'px',
     '--background': props.color,
-    '--top': (props.height / 2 ) + 'px',
-    '--left': (props.height / -2 ) + 'px',
+    '--top': (props.height / 2) + 'px',
+    '--left': (props.height / -2) + 'px',
 }
 </script>
 

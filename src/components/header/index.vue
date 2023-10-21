@@ -34,6 +34,9 @@ const barStore = useBarStore()
                     fill="#272636" p-id="9395" />
             </svg>
         </div>
+        <div class="save" v-if="barStore.showSaveBtn">
+            <van-button :disabled="barStore.saveBtnDisabled">保存</van-button>
+        </div>
         <moreBox></moreBox>
     </div>
 </template> 
@@ -60,8 +63,9 @@ const barStore = useBarStore()
     }
 
     .search {
-        @include wh(30px);
-        right: 20%;
+        @include wh(1.5rem);
+        right: 10%;
+
         @include ct();
         font-size: 14px;
     }
@@ -73,8 +77,15 @@ const barStore = useBarStore()
     }
 
     .more {
-        @include wh(30px);
+        @include wh(2);
         right: 5%;
+        @include ct();
+        font-size: 14px;
+    }
+
+    .save {
+        width: 3rem;
+        right: 0%;
         @include ct();
         font-size: 14px;
     }

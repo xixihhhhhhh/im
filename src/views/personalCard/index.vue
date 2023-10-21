@@ -2,10 +2,10 @@
 import { ref, onMounted } from 'vue'
 import { initPage } from '@/utils'
 import { useRouter } from 'vue-router'
-import leftArrow from '@/base/leftArrow.vue'
-import rightArrow from '@/base/rightArrow.vue'
+import LeftArrow from '@/base/leftArrow.vue'
+import RightArrow from '@/base/rightArrow.vue'
 import { addTxl } from '@/api'
-initPage('', false, false, false, false)
+initPage({ title: '', searchIcon: false, addMoreIcon: false, headGoBack: false, showHeader: false })
 
 const router = useRouter()
 
@@ -17,7 +17,7 @@ const address = ref<string>('广东 梅州')
 console.log(searchUser.avatarUrl, 'hhh')
 const AddTxl = async () => {
     const res = await addTxl(currentUser.id, searchUser.id, searchUser.name, currentUser.name)
-    showToast(res.msg)
+    showToast({ message: res.msg + '', type: 'success' })
 }
 import { findMyFriends } from '@/api'
 const userStrore = useUserStore()
@@ -38,7 +38,7 @@ onMounted(async () => {
 <template>
     <div class="personal-card-con">
         <div class="header-wrap">
-            <leftArrow class="left" :color="'#f00'" :width="2" :height="16" @click="router.go(-2)"></leftArrow>
+            <LeftArrow class="left" :color="'#f00'" :width="2" :height="16" @click="router.go(-2)"></LeftArrow>
             <div class="more">...</div>
         </div>
         <div class="second-row">
@@ -58,7 +58,7 @@ onMounted(async () => {
         </div>
         <div class="third-row">
             <div class="left">设置备注和标签</div>
-            <rightArrow :color="'#aaa'"></rightArrow>
+            <RightArrow :color="'#aaa'"></RightArrow>
         </div>
         <div class="forth-row">
             <div class="left">个性签名</div>
@@ -77,7 +77,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .personal-card-con {
     height: 100%;
-    background: #eee;
+    background: #ededed;
 
     .header-wrap {
         height: 2rem;

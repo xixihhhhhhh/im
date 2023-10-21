@@ -18,11 +18,11 @@ const props = defineProps({
     }
 })
 const style = {
-    '--width': props.width + 'px',
-    '--height': props.height + 'px',
+    '--width': props.width / 16 + 'rem',
+    '--height': props.height / 16 + 'rem',
     '--background': props.color,
-    '--top': (props.height / 2) + 'px',
-    '--left': (props.height / -2) + 'px',
+    '--top': (props.height / 2 / 16) + 'rem',
+    '--left': (props.height / -2 / 16) + 'rem',
 }
 </script>
 

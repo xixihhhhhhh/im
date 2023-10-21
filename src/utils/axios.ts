@@ -21,7 +21,7 @@ function createBaseInstance() {
 }
 
 function handleError(e: { message: any }) {
-    showToast('出错啦');
+    showToast({ message: '出错啦', type: 'fail' });
     throw e
 }
 
@@ -32,7 +32,7 @@ function handleResponse(response: any) {
 function mixinLoading(interceptors: any) {
     interceptors.request.use(loadingRequestInterceptor)
     function loadingRequestInterceptor(config: AxiosRequestConfig) {
-        showToast('加载中')
+        showToast({ message: '加载中', type: 'loading', duration: 500 })
 
         return config
     }

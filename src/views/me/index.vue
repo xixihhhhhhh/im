@@ -1,34 +1,39 @@
 <script setup lang="ts">
 import { initPage } from '@/utils'
 
-initPage('我', false, false, false, false)
+initPage({ title: '我', searchIcon: false, addMoreIcon: false, headGoBack: false, showHeader: false })
 
 import { useUserStore } from '@/store/modules/user';
 const userStore = useUserStore()
 
-import rightArrow from '@/base/rightArrow.vue';
+import RightArrow from '@/base/rightArrow.vue';
+
+import { useRouter } from 'vue-router';
+const router = useRouter()
 </script>
 
 <template>
     <div class="con">
         <div class="one">
             <div class="left">
-                <img src="https://aliyuncdn.antdv.com/logo.png" alt="">
+                <img src="https://aliyuncdn.antdv.com/logo.png" alt="" @click="router.push('/personalMsg')">
             </div>
             <div class="middle">
                 <div class="top">
                     {{ userStore.currentUser.name }}
                 </div>
                 <div class="mid">
-                    微信号: {{ undefined || 'aaa' }}
+                    <div>微信号: {{ undefined || 'aaa' }}</div>
+                    <div class="right">
+                        <RightArrow color="#ccc" class="arrow" :width="3" :height="10"></RightArrow>
+                    </div>
                 </div>
                 <div class="bottom">
 
                 </div>
+
             </div>
-            <div class="right">
-                <rightArrow color="#ccc" class="arrow"></rightArrow>
-            </div>
+
         </div>
     </div>
 </template>
@@ -50,21 +55,23 @@ import rightArrow from '@/base/rightArrow.vue';
 
         .middle {
             margin-left: .5rem;
+            width: 100%;
 
             .top {
                 font-size: 1rem;
                 font-weight: bold;
             }
 
-            .mid {}
-        }
+            .mid {
+                display: flex;
 
-        .right {
-            flex: 1;
+                .right {
+                    flex: 1;
 
-            .arrow {
-                float: right;
-                transform: translateY(1rem);
+                    .arrow {
+                        float: right;
+                    }
+                }
             }
         }
     }

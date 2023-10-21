@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { initPage } from '@/utils'
-import inputFoorer from './components/inputFooter.vue'
+import InputFoorer from './components/inputFooter.vue'
 import { useMeetingStore } from '@/store/modules/meeting'
 const meetingStore = useMeetingStore()
-initPage(meetingStore.name, false, false, true, true)
+initPage({ title: meetingStore.name, headGoBack: true, showHeader: true })
 
 import { onMounted, ref, watch, reactive, onUpdated } from 'vue'
 import { useUserStore } from '@/store/modules/user';
@@ -181,7 +181,7 @@ function clickActive() {
         </div>
 
     </div>
-    <inputFoorer @sendMessage="sendMessage" @voice="voice"></inputFoorer>
+    <InputFoorer @sendMessage="sendMessage" @voice="voice"></InputFoorer>
 </template>
 
 <style lang="scss" scoped>
@@ -189,7 +189,7 @@ function clickActive() {
     height: 100%;
     overflow-y: auto;
     padding: 2.125rem .625rem 3.125rem;
-    background: #eee;
+    background: #ededed;
     transition: padding .5s linear;
 
     .showHistoryMsg {

@@ -18,8 +18,12 @@ declare module 'vue' {
     VanCellGroup: typeof import('vant/es')['CellGroup']
     VanCheckbox: typeof import('vant/es')['Checkbox']
     VanField: typeof import('vant/es')['Field']
+    VanFiled: typeof import('vant/es')['Filed']
     VanForm: typeof import('vant/es')['Form']
+    VanInput: typeof import('vant/es')['Input']
     VanRadio: typeof import('vant/es')['Radio']
     VanRadioGroup: typeof import('vant/es')['RadioGroup']
+    VantBtn: typeof import('vant/es')['tBtn']
+    VantButton: typeof import('vant/es')['tButton']
   }
 }

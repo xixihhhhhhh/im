@@ -3,12 +3,12 @@ import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { initPage } from '@/utils'
 import { enroll, login } from '@/api'
-import { showToast } from 'vant';
+import { showToast, Toast } from 'vant';
 import { useUserStore } from '@/store/modules/user';
 
 const userStrore = useUserStore()
 const router = useRouter()
-initPage('发现', true, true, false, false)
+initPage({ title: '发现', searchIcon: true, addMoreIcon: true, headGoBack: false, showHeader: false })
 const Tabs = ['登录', '注册']
 interface Form {
     name: string,
@@ -24,6 +24,9 @@ const loginForm = reactive({
     password: '123'
 })
 const onSubmitLogin = async (valid: Form) => {
+    if (!checked.value) {
+        return showToast({ type: 'fail', message: '请勾选同意项！' })
+    }
     const res = await login(loginForm.name, loginForm.password)
     if (res.code === 200) {
         userStrore.setCurrentUser(res.data)
@@ -38,6 +41,9 @@ const registerForm = reactive({
     password: ''
 })
 const onSubmitRegister = async () => {
+    if (!checked.value) {
+        return showToast({ type: 'fail', message: '请勾选同意项！' })
+    }
     const res = await enroll(registerForm.name, registerForm.password)
     if (res.code === 200) {
         router.push('/index')

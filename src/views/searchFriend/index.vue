@@ -8,7 +8,7 @@ import { useUserStore } from '@/store/modules/user';
 
 const userStrore = useUserStore()
 const router = useRouter()
-initPage('我', false, false, false, false)
+initPage({ title: '我', searchIcon: false, addMoreIcon: false, headGoBack: false, showHeader: false })
 const clickErweima = (e: any) => {
     if (e.target.className === 'searchFriedn-wrap' || e.target.className === 'cancel') {
         router.go(-1)
@@ -42,7 +42,7 @@ const searchFriend = async () => {
         userStrore.setSearchUser(res.data)
         router.push('/personalCard')
     } else {
-        showToast(res.msg)
+        showToast({ message: res.msg + '', type: 'fail' })
         content.value = ''
     }
 }
@@ -97,7 +97,7 @@ const searchFriend = async () => {
 <style lang="scss" scoped>
 .searchFriedn-wrap {
     height: 100%;
-    background: #eee;
+    background: #ededed;
     padding: .625rem 0;
 
     .fir-col {

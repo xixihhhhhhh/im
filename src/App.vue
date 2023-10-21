@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView, useRoute } from 'vue-router'
-import footerBar from '@/components/footer/index.vue'
-import headerBar from '@/components/header/index.vue'
+import FooterBar from '@/components/footer/index.vue'
+import HeaderBar from '@/components/header/index.vue'
 import { useBarStore } from '@/store/modules/bar'
 const route = useRoute()
 const store = useBarStore()
@@ -11,8 +11,8 @@ const store = useBarStore()
   <div class="main-container">
     <RouterView />
   </div>
-  <footerBar v-if="!route.meta.hidden"></footerBar>
-  <headerBar v-if="store.showHeader"></headerBar>
+  <FooterBar v-if="!route.meta.hidden"></FooterBar>
+  <HeaderBar v-if="store.showHeader"></HeaderBar>
 </template>
 
 <style lang="scss">
@@ -36,10 +36,9 @@ body {
 
 #app {
   height: 100%;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // text-align: center;
   color: #2c3e50;
 }
 </style>

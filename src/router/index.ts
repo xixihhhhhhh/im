@@ -79,6 +79,22 @@ const constantRoutes: RouteRecordRaw[] = [
             hidden: true,
         },
     },
+    {
+        path: "/personalMsg",
+        name: 'personalMsg',
+        component: () => import("@/views/personalMsg/index.vue"),
+        meta: {
+            hidden: true,
+        },
+    },
+    {
+        path: "/upbateName",
+        name: 'upbateName',
+        component: () => import("@/views/upbateName/index.vue"),
+        meta: {
+            hidden: true,
+        },
+    },
 ];
 
 const router = createRouter({

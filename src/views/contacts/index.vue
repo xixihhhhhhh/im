@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { initPage } from '@/utils'
-initPage('通讯录', true, true, false, true)
-import contactMan from '@/components/contactMan/index.vue'
+initPage({ title: '通讯录', searchIcon: true })
+import ContactMan from '@/components/contactMan/index.vue'
 
 import { onMounted, ref } from 'vue'
 import { useUserStore } from '@/store/modules/user';
@@ -20,12 +20,12 @@ onMounted(async () => {
 
 <template>
     <div class="contacts-con">
-        <contactMan v-for="friend in friendList" :name="friend.friend_name" :id="friend.friend_id"></contactMan>
+        <ContactMan v-for="friend in friendList" :name="friend.friend_name" :id="friend.friend_id"></ContactMan>
     </div>
 </template>
 
 <style lang="scss" scoped>
 .contacts-con {
-    padding: 3rem 0 4.0625rem 0;
+    @include padding();
 }
 </style>

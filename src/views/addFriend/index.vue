@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import myInput from '@/base/myInput.vue'
-import funcItemList from './componnets/funcItemList.vue'
-import erweima from './componnets/erweima.vue'
+import FuncItemList from './componnets/funcItemList.vue'
+import Erweima from './componnets/erweima.vue'
 import { initPage } from '@/utils'
 import { useRouter } from 'vue-router'
 import { useOtherStore } from '@/store/modules/other'
-initPage('添加朋友', false, false, true, true)
-const router = useRouter() 
+initPage({ title: '添加朋友', headGoBack: true, showHeader: true })
+const router = useRouter()
 const otherStore = useOtherStore()
 const wechatNumber = 'kaerweinuomilan'
 const click = () => {
@@ -19,7 +19,7 @@ const click = () => {
         <div class="search-wrap">
             <!-- <myInput @pass-content="getContent"></myInput> -->
             <!-- 可以使用 CellGroup 作为容器 -->
-            <input class="input" placeholder="账号 / 手机号" @click="click" >
+            <input class="input" placeholder="账号 / 手机号" @click="click">
             <div class="preix-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1690454548697"
                     class="icon" viewBox="0 0 1024 1024" version="1.1" p-id="17544" width="16" height="16">
@@ -60,9 +60,9 @@ const click = () => {
                     p-id="2475" />
             </svg>
         </div>
-        <funcItemList></funcItemList>
+        <FuncItemList></FuncItemList>
     </div>
-    <erweima></erweima>
+    <Erweima></Erweima>
 </template>
 
 <style lang="scss" scoped>

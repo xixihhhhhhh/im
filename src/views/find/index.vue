@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { initPage } from '@/utils'
 
-initPage('发现', true, true, false, true)
+initPage({ title: '发现', searchIcon: true, addMoreIcon: true, showHeader: true })
 
 </script>
 

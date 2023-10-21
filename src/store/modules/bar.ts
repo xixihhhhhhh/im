@@ -28,7 +28,23 @@ export const useBarStore = defineStore("bar", () => {
     const setheadGoBack = (falg: boolean) => {
         headGoBack.value = falg
     }
-    return { showHeader, setHeader, title, headerSearch, setSearch, headerAddMore, setAddMore, headGoBack, setheadGoBack }
+
+    // saveBtn状态
+    const showSaveBtn = ref<boolean>(false)
+    const setshowSaveBtn = (falg: boolean) => {
+        showSaveBtn.value = falg
+    }
+    // 控制保存按钮的禁用状态
+    const saveBtnDisabled = ref(true)
+    const setsaveBtnDisabled = (falg: boolean) => {
+        saveBtnDisabled.value = falg
+    }
+
+
+    return {
+        showHeader, setHeader, title, headerSearch, setSearch, headerAddMore, setAddMore, headGoBack, setheadGoBack,
+        saveBtnDisabled, setsaveBtnDisabled, showSaveBtn, setshowSaveBtn
+    }
 },
     {
         persist: true,

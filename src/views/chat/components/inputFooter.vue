@@ -104,7 +104,7 @@ import voiceCom from './voice.vue'
     position: fixed;
     bottom: 0;
     left: 0;
-    background: #eee;
+    background: #ededed;
     @include wh(100%, 3.125rem);
     align-items: center;
     transition: height .5s linear;

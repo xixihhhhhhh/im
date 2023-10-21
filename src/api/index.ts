@@ -45,3 +45,10 @@ export const findMyFriends = (user_id: nors) => request({
 export const findFriendChatMsgList = (user_id: nors, toUser_id: nors) => request({
     url: '/chat/getMsgList', method: 'post', data: { user_id, toUser_id }
 })
+
+/**
+ * 修改用户名接口
+ */
+export const upbateUserName = (user_id: nors, user_name: nors) => request({
+    url: '/user/upbateName', method: 'post', data: { user_id, user_name }
+})

@@ -2,12 +2,23 @@
 import { useRouter } from 'vue-router';
 import { useAppStore } from "@/store/modules/app"
 import { useBarStore } from "@/store/modules/bar"
+import { useUserStore } from "@/store/modules/user"
 import leftArrow from '@/base/leftArrow.vue';
 import moreBox from './components/morebox.vue'
 const router = useRouter()
 
 const appStore = useAppStore()
 const barStore = useBarStore()
+const userStore = useUserStore()
+
+import { upbateUserName } from '@/api'
+const upbateName = async () => {
+    const res = await upbateUserName(userStore.currentUser.id, userStore.Name)
+    console.log(res)
+    if (res.code === 200) {
+        userStore.currentUser.name = userStore.Name
+    }
+}
 </script>
 
 <template>
@@ -35,7 +46,7 @@ const barStore = useBarStore()
             </svg>
         </div>
         <div class="save" v-if="barStore.showSaveBtn">
-            <van-button :disabled="barStore.saveBtnDisabled">保存</van-button>
+            <van-button :disabled="barStore.saveBtnDisabled" @click="upbateName">保存</van-button>
         </div>
         <moreBox></moreBox>
     </div>

@@ -21,9 +21,12 @@ watchEffect(() => {
     if (name.value === userStore.currentUser.name) {
         debouncedFn(true)
     } else {
+        userStore.setName(name.value)
         debouncedFn(false)
     }
 })
+
+
 </script>
 
 <template>
@@ -31,6 +34,7 @@ watchEffect(() => {
         <div class="name">
             <van-field v-model="name" />
         </div>
+        <div class="tip">好名字可以让你的朋友更好地记住你</div>
     </div>
 </template>
 
@@ -41,7 +45,12 @@ watchEffect(() => {
     background: rgba(237, 237, 237, 255);
 
     .name {
-        margin-top: 1rem;
+        margin: 1rem 1rem 0 1rem;
+    }
+    .tip {
+        margin: 2px 0 0 1rem;
+        color: #999;
+        font-size: 14px;
     }
 }
 </style>

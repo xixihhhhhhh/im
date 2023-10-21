@@ -20,7 +20,7 @@ const onChangeTab = (index: number) => {
 
 const activeIndex = ref<number>(0)
 const loginForm = reactive({
-    name: 'kk',
+    name: '神',
     password: '123'
 })
 const onSubmitLogin = async (valid: Form) => {

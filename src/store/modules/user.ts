@@ -4,9 +4,9 @@ import store from "@/store"
 
 interface User {
     id: 0,
-    name: '',
-    password: '',
-    avatarUrl: ''
+    name: string,
+    password: string,
+    avatarUrl: string
 }
 
 export const useUserStore = defineStore("user", () => {
@@ -32,7 +32,12 @@ export const useUserStore = defineStore("user", () => {
         searchUser.value = user
     }
 
-    return { currentUser, searchUser, setCurrentUser, setSearchUser }
+    const Name = ref<string>("")
+    const setName = (name: string) => {
+        Name.value = name
+    }
+
+    return { currentUser, searchUser, setCurrentUser, setSearchUser, Name, setName }
 },
     {
         persist: true,

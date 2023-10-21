@@ -50,18 +50,12 @@ function manageMsg(msg: string) {
     return msg
 }
 
-const voiceActive = ref(false)
-function voice() {
-    emits('voice')
-    meetingStore.voiceActive = !meetingStore.voiceActive
-}
-import voiceCom from './voice.vue'
 </script>
 
 <template>
     <footer class="footer-wrap" :class="{ active: meetingStore.inputActive, voiceActive: meetingStore.voiceActive }">
         <div class="inner-wrap" v-if="!meetingStore.voiceActive">
-            <div class="volumne" @click="voice">
+            <div class="volumne" >
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1691043348371"
                     class="icon" viewBox="0 0 1025 1024" version="1.1" p-id="3161" width="22" height="20">
                     <path
@@ -92,7 +86,6 @@ import voiceCom from './voice.vue'
             </div>
             <van-button type="success" size="small" v-show="meetingStore.inputActive" @click="sendMessage">发送</van-button>
         </div>
-        <voiceCom v-if="meetingStore.voiceActive" class="voice"></voiceCom>
         <div class="emoji-container" :class="{ active: meetingStore.inputActive }" @click.stop>
             <img class="emoji" v-for="(emoji, i) in emojiList" :key="i" :src="emoji.url" @click.stop="pushImg(emoji)" />
         </div>

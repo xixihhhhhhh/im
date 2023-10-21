@@ -5,6 +5,8 @@ initPage({ title: '个人信息', searchIcon: false, addMoreIcon: false, headGoB
 import RightArrow from '@/base/rightArrow.vue';
 import { useRouter } from 'vue-router';
 const router = useRouter()
+import { useUserStore } from "@/store/modules/user"
+const currentUser = useUserStore().currentUser
 </script>
 
 <template>
@@ -22,7 +24,7 @@ const router = useRouter()
             <div class="left">名字</div>
             <div class="right">
                 <div class="text">
-                    绝对精神
+                    {{ currentUser.name }}
                 </div>
                 <RightArrow color="#ccc" class="arrow" :width="2" :height="8" @click="router.push('/upbateName')"></RightArrow>
             </div>
